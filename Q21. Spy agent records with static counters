@@ -1,0 +1,102 @@
+/*Q21. The Spy Academy maintains information about its operatives using the SpySystem class. Each agent has the following attributes:
+• name (String) — The real name of the agent.
+• age (int) — The age of the agent.
+• codename (String) — The covert codename of the agent.
+• isUndercover (boolean) — Indicates whether the agent is currently undercover.
+• assignment (String) — The current mission assigned to the agent.
+• specialty (String) — The agent's area of expertise.
+Class: SpySystem
+Implement the SpySystem class to read, process, and display agent information and calculate the average age of all agents.
+The class must include the six instance variables listed above to represent an agent's details.
+It must also contain the following private static variables:
+• totalAgents (int) — stores the total number of agents processed.
+• totalAge (int) — stores the sum of the ages of all agents processed.
+Implement a static method named displayAverageA ge() that calculates the average age using floating-point division and displays the result
+rounded to two decimal places in the format:
+Average Age: <average_age>
+SpySystem Class Requirements
+The SpySystem class must:
+1. Read an integer N, representing the number of agents.
+2: Read each agent's details in the following order: name, age, codename, undercover status, assignment, and specialty.
+3. Display each agent's details immediately after reading them, with each value on a separate line.
+4. Update totalAgents and totalAge for every agent processed.
+5: After processing all agents, call displayAverageAge() to display the average age.
+Input Format:
+• The first line contains an integer NV, representing the number of agents.
+name
+age
+codename
+isUndercover
+assignment
+specialty
+• The input is repeated for all agents.
+Output Format:
+For each agent, display the entered details in the same order:
+<name>
+<age>
+<codename>
+<isUndercover>
+<assignment>
+<specialty>
+• After displaying the details of all agents, display:
+Average Age: <average_age>
+• The average age must be calculated using floating-point division and displayed as a double.
+Note:
+• Round the average age to 2 decimal places.
+*/
+import java.util.Scanner;
+ 
+public class SpySystem {
+    String name;
+    int age;
+    String codename;
+    boolean isUndercover;
+    String assignment;
+    String specialty;
+ 
+    private static int totalAgents = 0;
+    private static int totalAge = 0;
+ 
+    SpySystem(String name, int age, String codename, boolean isUndercover,
+              String assignment, String specialty) {
+        this.name = name;
+        this.age = age;
+        this.codename = codename;
+        this.isUndercover = isUndercover;
+        this.assignment = assignment;
+        this.specialty = specialty;
+        totalAgents++;
+        totalAge += age;
+    }
+ 
+    void display() {
+        System.out.println(name);
+        System.out.println(age);
+        System.out.println(codename);
+        System.out.println(isUndercover);
+        System.out.println(assignment);
+        System.out.println(specialty);
+    }
+ 
+    static void displayAverageAge() {
+        double avg = totalAgents == 0 ? 0.0 : (double) totalAge / totalAgents;
+        System.out.printf("Average Age: %.2f%n", avg);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        for (int i = 0; i < n; i++) {
+            String name = sc.nextLine().trim();
+            int age = Integer.parseInt(sc.nextLine().trim());
+            String code = sc.nextLine().trim();
+            boolean under = Boolean.parseBoolean(sc.nextLine().trim());
+            String assign = sc.nextLine().trim();
+            String spec = sc.nextLine().trim();
+            SpySystem agent = new SpySystem(name, age, code, under, assign, spec);
+            agent.display();
+        }
+        displayAverageAge();
+        sc.close();
+    }
+}
