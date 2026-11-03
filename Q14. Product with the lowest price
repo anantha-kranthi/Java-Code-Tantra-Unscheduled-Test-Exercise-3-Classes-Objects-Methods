@@ -1,0 +1,62 @@
+/*Q14. Write a Java program to find the product with the lowest price among three products.
+Define a class Product with the following instance variables:
+• pcode (int): stores the product code.
+• pname (String): stores the product name.
+• price (double): stores the product price.
+Implement a parameterized constructor in the Product class to initialize all three instance variables.
+The LowestPriceProduct class must perform the following operations:
+1. Create an array to store three Product objects.
+2 Read the product code, product name, and product price for each product.
+3. Create a Product object for each set of input values and store it in the array.
+4. Compare the prices of the three products and identify the product with the lowest price. If multiple products have the same lowest
+price, select the first one.
+5: Display the details of the lowest-priced product in the required output format.
+Input Format:
+Enter the details of three products, one product after another. For each product, provide the following values on separate lines:
+• Product code (integer)
+• Product name (string)
+• Price (double)
+Output Format:
+Print the product details of the product with the lowest price in the following format:
+Lowest priced product:
+Product Code: <pcode>
+Product Name: <pname>
+Product Price: <price>
+*/
+import java.util.Scanner;
+ 
+class Product {
+    int pcode;
+    String pname;
+    double price;
+ 
+    Product(int pcode, String pname, double price) {
+        this.pcode = pcode;
+        this.pname = pname;
+        this.price = price;
+    }
+}
+ 
+public class LowestPriceProduct {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Product[] products = new Product[3];
+        for (int i = 0; i < 3; i++) {
+            int code = Integer.parseInt(sc.nextLine().trim());
+            String name = sc.nextLine().trim();
+            double price = Double.parseDouble(sc.nextLine().trim());
+            products[i] = new Product(code, name, price);
+        }
+        Product low = products[0];
+        for (int i = 1; i < 3; i++) {
+            if (products[i].price < low.price) {   // first one wins on a tie
+                low = products[i];
+            }
+        }
+        System.out.println("Lowest priced product:");
+        System.out.println("Product Code: " + low.pcode);
+        System.out.println("Product Name: " + low.pname);
+        System.out.println("Product Price: " + low.price);
+        sc.close();
+    }
+}
