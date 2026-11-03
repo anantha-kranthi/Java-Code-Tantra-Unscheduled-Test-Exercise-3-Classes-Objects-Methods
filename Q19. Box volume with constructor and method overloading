@@ -1,0 +1,125 @@
+/*Q19. A courier company needs to calculate the volume of shipping cartons of different shapes. Design a Java program using constructor
+overloading, method overloading, and a static method.
+Class: Box
+Create a separate class named Box with the following instance variables:
+• length (double) — represents the length of the box.
+• breadth (double) — represents the breadth of the box.
+• height (double) — represents the height of the box.
+Constructors
+Implement the following overloaded constructors:
+• Box() — initializes all three dimensions to 1.0.
+• Box(double side) — creates a cube by assigning the given side to all three dimensions.
+• Box(double length, double breadth, double height) — initializes the box with the specified dimensions.
+Methods
+Implement the following methods:
+• volume() (double) — returns the volume calculated as length x breadth x height.
+• volume(double scaleFactor) (double) — returns the original volume multiplied by the given scale factor.
+• static volume(double 1, double b, double h) (double) — returns the volume calculated using the supplied dimensions.
+• displayDimensions() (void) — displays the length, breadth, and height of the box, each on a separate line.
+Class: BoxDemo
+Implement the BoxDemo class to perform the following operations:
+1. Create a default Box object.
+2. Read the side of a cube and create a cube object.
+3. Read the length, breadth, and height of a rectangular box and create its object.
+4. Read a scale factor for each box.
+5. Display the dimensions, original volume, and scaled volume of each box.
+6. Read three additional dimensions and calculate their volume using the static volume() method.
+Input Format:
+The input consists of the following values, each provided on a separate line:
+• Side of the cube — double
+• Length of the rectangular box — double
+• Breadth of the rectangular box — double
+• Height of the rectangular box — double
+• Scale factor for the default box — double
+• Scale factor for the cube box — double
+• Scale factor for the rectangular box — double
+• Length for static volume calculation — double
+• Breadth for static volume calculation — double
+• Height for static volume calculation — double
+Output Format:
+Display the details of each box:
+Default Box:
+Length: <length>
+Breadth: <breadth>
+Height: <height>
+Volume: <volume>
+Scaled Volume: <scaled_volume>
+Cube Box:
+Length: <length>
+Breadth: <breadth>
+Height: <height>
+Volume: <volume>
+Scaled Volume: <scaled_volume>
+Rectangular Box:
+Length: <length>
+Breadth: <breadth>
+Height: <height>
+Volume: <volume>
+Scaled Volume: <scaled_volume>
+Static Volume: <volume>
+*/
+/////////////////////////////////////////////////
+
+import java.util.Scanner;
+ 
+class Box {
+    double length, breadth, height;
+ 
+    Box() {
+        this(1.0, 1.0, 1.0);
+    }
+ 
+    Box(double side) {
+        this(side, side, side);
+    }
+ 
+    Box(double length, double breadth, double height) {
+        this.length = length;
+        this.breadth = breadth;
+        this.height = height;
+    }
+ 
+    double volume() {
+        return length * breadth * height;
+    }
+ 
+    double volume(double scaleFactor) {
+        return volume() * scaleFactor;
+    }
+ 
+    static double volume(double l, double b, double h) {
+        return l * b * h;
+    }
+ 
+    void displayDimensions() {
+        System.out.println("Length: " + length);
+        System.out.println("Breadth: " + breadth);
+        System.out.println("Height: " + height);
+    }
+}
+ 
+public class BoxDemo {
+    static void show(String label, Box box, double scale) {
+        System.out.println(label);
+        box.displayDimensions();
+        System.out.println("Volume: " + box.volume());
+        System.out.println("Scaled Volume: " + box.volume(scale));
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Box defaultBox = new Box();
+        double side = sc.nextDouble();
+        Box cube = new Box(side);
+        double l = sc.nextDouble(), b = sc.nextDouble(), h = sc.nextDouble();
+        Box rect = new Box(l, b, h);
+        double s1 = sc.nextDouble(), s2 = sc.nextDouble(), s3 = sc.nextDouble();
+        double sl = sc.nextDouble(), sb = sc.nextDouble(), sh = sc.nextDouble();
+ 
+        show("Default Box:", defaultBox, s1);
+        show("Cube Box:", cube, s2);
+        show("Rectangular Box:", rect, s3);
+        System.out.println("Static Volume: " + Box.volume(sl, sb, sh));
+        sc.close();
+    }
+}
