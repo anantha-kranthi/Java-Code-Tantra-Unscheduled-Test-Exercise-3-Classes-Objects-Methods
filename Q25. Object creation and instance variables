@@ -1,0 +1,46 @@
+/*Q25. You are developing a simple Student Details System to demonstrate object creation, instance variables, and method invocation in Java.
+Create a class named Student with the following instance variables:
+• id (int): stores the student's ID.
+• name (String): stores the student's name.
+Implement the following method in the Student class:
+• display(): Displays the student's ID and name in the format ID: <student_id>, Name: <student_name>.
+The StudentDetails class should perform the following operations:
+1. Read the student ID and name.
+2. Create a Student object named s1 using the no-argument constructor.
+3. Assign the input values to the object's id and name instance variables.
+4. Call display() to display the student details.
+Input Format:
+• The first line contains an integer id, representing the student id.
+• The second line contains a string name, representing the student name.
+Output Format:
+• Display the student's details in the following format:
+ID: <student_id>, Name: <student_name>
+Sample Input:
+101
+John
+Sample Output:
+ID: 101, Name: John
+*/
+import java.util.Scanner;
+ 
+class Student {
+    int id;
+    String name;
+ 
+    void display() {
+        System.out.println("ID: " + id + ", Name: " + name);
+    }
+}
+ 
+public class StudentDetails {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int id = Integer.parseInt(sc.nextLine().trim());
+        String name = sc.nextLine().trim();
+        Student s1 = new Student();
+        s1.id = id;
+        s1.name = name;
+        s1.display();
+        sc.close();
+    }
+}
