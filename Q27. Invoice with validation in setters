@@ -1,0 +1,78 @@
+/*Q27. You are developing an Invoice Management System for a hardware store. The system must store invoice details, validate the purchased
+quantity and price, and calculate the total invoice amount.
+Create a class named Invoice with the following instance variables:
+• partNumber (String): stores the part number.
+• partDescription (String): stores the description of the part.
+• quantity (int): stores the number of items purchased.
+• pricePerlItem (double): stores the price of one item.
+Constructor
+Implement a parameterized constructor Invoice(String partNumber, String partDescription, int quantity, double pricePerlItem) to initialize
+all four instance variables.
+The constructor must use setQuantity() and setPricePerItem() to validate the quantity and price.
+Methods
+Implement the following methods in the Invoice class:
+• setQuantity(int quantity): Assigns the quantity if it is positive; otherwise, sets it to 0.
+• getQuantity(): Returns the current quantity (int).
+• setPricePerltem(double pricePerlItem): Assigns the price if it is positive; otherwise, sets it to 0.0.
+• getPricePerltem(): Returns the current price per item (double).
+• getPartNumber(): Returns the part number (String).
+• getPartDescription(): Returns the part description (String).
+• getInvoiceAmount(): Returns the total invoice amount (double) using the formula:
+Invoice Amount = quantity * pricePerItem
+The InvoiceTest class should read the invoice details, create an Invoice object, and display the invoice information and calculated amount
+using the provided getter methods.
+Input Format:
+• The first line contains a string representing the Part Number.
+• The second line contains a string representing the Part Description.
+• The third line contains an integer representing the Quantity.
+• The fourth line contains a double representing the Price per Item.
+Output Format:
+• For each invoice, display:
+Part Number: <part_number>
+Part Description: <part_description>
+Quantity: <quantity>
+Price per Item: <price_per_item>
+Total Invoice Amount: <invoice_amount>
+*/
+import java.util.Scanner;
+ 
+class Invoice {
+    private String partNumber;
+    private String partDescription;
+    private int quantity;
+    private double pricePerItem;
+ 
+    Invoice(String partNumber, String partDescription, int quantity, double pricePerItem) {
+        this.partNumber = partNumber;
+        this.partDescription = partDescription;
+        setQuantity(quantity);
+        setPricePerItem(pricePerItem);
+    }
+ 
+    void setQuantity(int quantity) { this.quantity = quantity > 0 ? quantity : 0; }
+    int getQuantity() { return quantity; }
+    void setPricePerItem(double pricePerItem) {
+        this.pricePerItem = pricePerItem > 0 ? pricePerItem : 0.0;
+    }
+    double getPricePerItem() { return pricePerItem; }
+    String getPartNumber() { return partNumber; }
+    String getPartDescription() { return partDescription; }
+    double getInvoiceAmount() { return quantity * pricePerItem; }
+}
+ 
+public class InvoiceTest {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String num = sc.nextLine().trim();
+        String desc = sc.nextLine().trim();
+        int qty = Integer.parseInt(sc.nextLine().trim());
+        double price = Double.parseDouble(sc.nextLine().trim());
+        Invoice inv = new Invoice(num, desc, qty, price);
+        System.out.println("Part Number: " + inv.getPartNumber());
+        System.out.println("Part Description: " + inv.getPartDescription());
+        System.out.println("Quantity: " + inv.getQuantity());
+        System.out.println("Price per Item: " + inv.getPricePerItem());
+        System.out.println("Total Invoice Amount: " + inv.getInvoiceAmount());
+        sc.close();
+    }
+}
