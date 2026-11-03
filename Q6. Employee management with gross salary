@@ -1,0 +1,96 @@
+/*Q6. Write a Java program to demonstrate classes and objects by implementing a simple Employee Management System for a medium-sized IT
+company. The system stores employee records and calculates gross salary by adding allowances to the basic salary.
+Class: Employee
+Create a class named Employee with the following instance variables:
+• name (String): Stores the employee's name.
+• id (int): Stores the employee's ID.
+• department (String): Stores the employee's department.
+• basicSalary (double): Stores the employee's basic salary.
+Implement the following:
+1. A parameterized constructor Employee(String name, int id, String department, double basicSalary) to initialize all four instance variables
+using the this keyword.
+2. Amethod calculateGrossSalary() that calculates and returns the gross salary using the following formula:
+Gross Salary = Basic Salary + HRA + DA
+• HRA= 20% of Basic Salary
+- DA= 10% of Basic Salary
+3. A method display() that prints the employee's details in the following order, with each field on a separate line:
+Employee ID: <id>
+Name: <name>
+Department: <department>
+Basic Salary: <basic_salary>
+Gross Salary: <gross_salary>
+Both salary values must be formatted to one decimal place.
+Class: EmployeeManagementSystem
+The EmployeeManagementSystem class should:
+1. Read the number of employees.
+2. Create an array of Employee objects of the specified size.
+3. Read each employee's name, ID, department, and basic salary, in that order.
+4. Create an Employee object for each record and store it in the array.
+5. Call display() for every employee to display their details.
+Input Format:
+1. The first line contains an integer n, representing the number of employees.
+2. The next 7 lines each contain:
+• A string representing Employee Name
+• An integer representing Employee ID
+• A string representing Department
+• A double representing Basic Salary
+These values are entered on separate lines for each employee in the given order.
+Output Format:
+• For each employee, display:
+Employee ID: <id>
+Name: <name>
+Department: <department>
+Basic Salary: <basic_salary>
+Gross Salary: <gross_salary>
+Note:
+• The Basic Salary should be formated to one decimal places.
+• The Gross Salary should be formated to one decimal places.
+*/
+import java.util.Scanner;
+ 
+class Employee {
+    String name;
+    int id;
+    String department;
+    double basicSalary;
+ 
+    Employee(String name, int id, String department, double basicSalary) {
+        this.name = name;
+        this.id = id;
+        this.department = department;
+        this.basicSalary = basicSalary;
+    }
+ 
+    double calculateGrossSalary() {
+        double hra = 0.20 * basicSalary;
+        double da = 0.10 * basicSalary;
+        return basicSalary + hra + da;
+    }
+ 
+    void display() {
+        System.out.println("Employee ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Department: " + department);
+        System.out.printf("Basic Salary: %.1f%n", basicSalary);
+        System.out.printf("Gross Salary: %.1f%n", calculateGrossSalary());
+    }
+}
+ 
+public class EmployeeManagementSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Employee[] emps = new Employee[n];
+        for (int i = 0; i < n; i++) {
+            String name = sc.nextLine().trim();
+            int id = Integer.parseInt(sc.nextLine().trim());
+            String dept = sc.nextLine().trim();
+            double basic = Double.parseDouble(sc.nextLine().trim());
+            emps[i] = new Employee(name, id, dept, basic);
+        }
+        for (Employee e : emps) {
+            e.display();
+        }
+        sc.close();
+    }
+}
