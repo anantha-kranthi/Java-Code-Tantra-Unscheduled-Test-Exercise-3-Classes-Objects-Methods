@@ -1,0 +1,75 @@
+/*Q9. Write a Java program to calculate an employee's tax deduction and net salary using a static nested class, constructor, and instance methods.
+The provided EmployeeTax class must contain a static nested class named Employee.
+Employee class
+Declare the following private instance variables:
+• empld (String): stores the employee ID.
+• name (String): stores the employee name.
+• salary (double): stores the employee's salary.
+Constructor
+Implement a parameterized constructor Employee(String emplId, String name, double salary) to initialize all three instance variables using
+the this keyword.
+Methods
+Implement the following methods in the Employeeclass:
+• display(): Prints the employee ID, name, and salary on separate lines. The salary must be formatted to exactly two decimal places.
+• calculateTax(): Calculates the tax using the formula:
+tax = salary * 10 / 100
+• Print the tax rounded to exactly two decimal places.
+• calculateNetSalary(): Calculates the net salary using the formula:
+netSalary = salary - tax
+• Print the net salary rounded to exactly two decimal places.
+The EmployeeTax class should read the employee ID, name, and salary, create an Employee object, and call display(), calculateTax(), and
+calculateNetSalary() in that order.
+Input Format:
+• The first line contains a string representing the employee id.
+• The second line contains a string representing the employee name.
+• The third line contains a floating-point number representing the salary.
+Output Format:
+• Print the output of display(), followed by calculateTax(), followed by calculateNetSalary() on separate lines, each rounded to two
+decimal places.
+*/
+import java.util.Scanner;
+ 
+public class EmployeeTax {
+ 
+    static class Employee {
+        private String empId;
+        private String name;
+        private double salary;
+ 
+        Employee(String empId, String name, double salary) {
+            this.empId = empId;
+            this.name = name;
+            this.salary = salary;
+        }
+ 
+        void display() {
+            System.out.println(empId);
+            System.out.println(name);
+            System.out.printf("%.2f%n", salary);
+        }
+ 
+        double calculateTax() {
+            double tax = salary * 10 / 100;
+            System.out.printf("%.2f%n", tax);
+            return tax;
+        }
+ 
+        void calculateNetSalary() {
+            double tax = salary * 10 / 100;
+            double netSalary = salary - tax;
+            System.out.printf("%.2f%n", netSalary);
+        }
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine().trim();
+        String name = sc.nextLine().trim();
+        double salary = Double.parseDouble(sc.nextLine().trim());
+        Employee e = new Employee(id, name, salary);
+        e.display();
+        e.calculateTax();
+        e.calculateNetSalary();
+        sc.close();
+    }
+}
