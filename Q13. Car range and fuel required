@@ -1,0 +1,62 @@
+/*Q13. Write a Java program to create a class Car that stores car details and calculates its fuel efficiency.
+The Car class must contain:
+• Instance variables: brand, model, fuelCapacity, and mileage.
+• Aconstructor Car(brand, model, fuelCapacity, mileage) that initializes all four instance variables.
+• A method calculateRange() that calculates and prints the total distance the car can travel on a full tank, rounded to two decimal
+places, using the formula:
+Range = fuelCapacity x mileage
+• A method calculateFuelRequired(distance) that calculates and prints the amount of fuel required to travel the given distance,
+rounded to two decimal places, using the formula:
+Fuel_Required = Sistanes,
+mileage
+The CarFuelEfficiency class should read the car details and the travel distance, create a Car object, and call calculateRange() followed by
+calculateFuelRequired(distance).
+Input Format:
+• The first line contains a string representing the car brand.
+• The second line contains a string representing the car model.
+• The third line contains a floating-point number representing the fuel tank capacity in litres.
+• The fourth line contains a floating-point number representing the mileage in kilometres per litre.
+• The fifth line contains a floating-point number representing the distance in kilometres.
+Output Format:
+• Print the output of calculateRange() followed by calculateFuelRequired(distance) on separate lines.
+*/
+import java.util.Scanner;
+ 
+class Car {
+    String brand;
+    String model;
+    double fuelCapacity;
+    double mileage;
+ 
+    Car(String brand, String model, double fuelCapacity, double mileage) {
+        this.brand = brand;
+        this.model = model;
+        this.fuelCapacity = fuelCapacity;
+        this.mileage = mileage;
+    }
+ 
+    void calculateRange() {
+        double range = fuelCapacity * mileage;
+        System.out.printf("%.2f%n", range);
+    }
+ 
+    void calculateFuelRequired(double distance) {
+        double fuel = distance / mileage;
+        System.out.printf("%.2f%n", fuel);
+    }
+}
+ 
+public class CarFuelEfficiency {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String brand = sc.nextLine().trim();
+        String model = sc.nextLine().trim();
+        double capacity = Double.parseDouble(sc.nextLine().trim());
+        double mileage = Double.parseDouble(sc.nextLine().trim());
+        double distance = Double.parseDouble(sc.nextLine().trim());
+        Car car = new Car(brand, model, capacity, mileage);
+        car.calculateRange();
+        car.calculateFuelRequired(distance);
+        sc.close();
+    }
+}
