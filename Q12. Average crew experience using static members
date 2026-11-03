@@ -1,0 +1,67 @@
+/*Q12. The Galactic Explorers Guild is preparing for a new expedition and wants to analyze the experience levels of its crew members. Design a
+Java class named CrewMember to represent individual crew members and calculate their average experience level.
+Class: CrewMember
+The CrewMember class should contain the following attributes:
+• name (String): Represents the name of the crew member.
+• experienceLevel (int): Represents the experience level of the crew member.
+Implement a parameterized constructor:
+• CrewMember(String name, int experienceLevel) — initializes the crew member with the given name and experience level.
+Maintain the information about all crew members using the following private static variables:
+• crewMembers (CrewMember[]) — stores the objects representing all crew members.
+• totalCrewMembers (int) — tracks the total number of crew members created.
+Implement a static method named calculateAverageExperience() that calculates the sum of all crew members' experience levels, computes
+their average using floating-point division, and displays the result rounded to two decimal places.
+The CrewMember class must perform the following operations:
+1. Read the number of crew members.
+2. Create an array to store the crew member objects.
+3. Read each crew member's name and experience level.
+4. Create a CrewMember object for each crew member and store it in the array.
+5. Invoke calculateAverageExperience() after all crew members have been created.
+Input Format:
+• The first line contains an integer representing the number of crew members.
+• For each crew member, the following two values are provided in order:
+<name>
+<experience_level>
+• This input is repeated for all crew members.
+Output Format:
+• Display the average experience level in the following format:
+Average experience level: <average _experience_level>
+• The average experience level must be rounded to two decimal places.
+*/
+import java.util.Scanner;
+ 
+public class CrewMember {
+    String name;
+    int experienceLevel;
+ 
+    private static CrewMember[] crewMembers;
+    private static int totalCrewMembers = 0;
+ 
+    CrewMember(String name, int experienceLevel) {
+        this.name = name;
+        this.experienceLevel = experienceLevel;
+        totalCrewMembers++;
+    }
+ 
+    static void calculateAverageExperience() {
+        int sum = 0;
+        for (int i = 0; i < totalCrewMembers; i++) {
+            sum += crewMembers[i].experienceLevel;
+        }
+        double avg = totalCrewMembers == 0 ? 0.0 : (double) sum / totalCrewMembers;
+        System.out.printf("Average experience level: %.2f%n", avg);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        crewMembers = new CrewMember[n];
+        for (int i = 0; i < n; i++) {
+            String name = sc.nextLine().trim();
+            int level = Integer.parseInt(sc.nextLine().trim());
+            crewMembers[i] = new CrewMember(name, level);
+        }
+        calculateAverageExperience();
+        sc.close();
+    }
+}
