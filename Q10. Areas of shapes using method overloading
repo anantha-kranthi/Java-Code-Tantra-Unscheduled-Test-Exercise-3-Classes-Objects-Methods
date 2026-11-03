@@ -1,0 +1,53 @@
+/*Q10. Write a Java program to calculate the areas of different geometric shapes using method overloading.
+Create a class AreaCalculator that contains overloaded methods named area() to calculate the area of different shapes using different
+parameter lists, as given below:
+• area(int radius) — calculates the area of a circle using the formula 3.14 × r².
+• area(int length, int breadth) — calculates the area of a rectangle using the formula length x breadth.
+• area(double side) — calculates the area of a square using the formula side x side.
+The Area class should perform the following operations:
+1. Read the radius of the circle, the length and breadth of the rectangle, and the side of the square.
+2. Create an AreaCalculator object.
+3. Call the appropriate overloaded area() methods to calculate the three areas.
+4. Display the results in the specified format.
+Input Format:
+The input consists of four lines:
+• Radius of the circle (integer)
+• Length of the rectangle (integer)
+• Breadth of the rectangle (integer)
+• Side of the square (double)
+Output Format:
+After entering all the input, print the areas in the following order, each on a new line:
+• Area of the circle — formatted to 2 decimal places
+• Area of the rectangle — integer value
+• Area of the square — formatted to 2 decimal places
+*/
+import java.util.Scanner;
+ 
+class AreaCalculator {
+    double area(int radius) {
+        return 3.14 * radius * radius;
+    }
+ 
+    int area(int length, int breadth) {
+        return length * breadth;
+    }
+ 
+    double area(double side) {
+        return side * side;
+    }
+}
+ 
+public class Area {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int radius = sc.nextInt();
+        int length = sc.nextInt();
+        int breadth = sc.nextInt();
+        double side = sc.nextDouble();
+        AreaCalculator calc = new AreaCalculator();
+        System.out.printf("%.2f%n", calc.area(radius));
+        System.out.println(calc.area(length, breadth));
+        System.out.printf("%.2f%n", calc.area(side));
+        sc.close();
+    }
+}
