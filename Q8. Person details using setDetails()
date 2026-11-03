@@ -1,0 +1,48 @@
+/*Q8. Write a Java program to create a class Person with the following instance variables:
+• name - stores the person's name as a String
+• age - stores the person's age as an int
+• salary - stores the person's salary as a double
+Implement the following methods in the Person class:
+• setDetails(String name, int age, double salary) - assigns the given values to the instance variables using the this keyword.
+• displayDetails() - Displays the person's name, age, and salary, each on a separate line. The salary must be formatted to exactly two
+decimal places.
+The PersonClass should read the person's name, age, and salary, create a Person object, call setDetails() to assign the values, and then call
+displayDetails() to display the information.
+Input Format:
+• The first input line reads a string representing the name of the person.
+• The second input line reads an integer representing the age of the person.
+• The third input line reads a double value representing the salary of the person.
+Output Format:
+• The output line contains the name, age, and salary of the person formatted to two decimal places, each one on a new line.*/
+import java.util.Scanner;
+ 
+class Person {
+    String name;
+    int age;
+    double salary;
+ 
+    void setDetails(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+ 
+    void displayDetails() {
+        System.out.println(name);
+        System.out.println(age);
+        System.out.printf("%.2f%n", salary);
+    }
+}
+ 
+public class PersonClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine().trim();
+        int age = Integer.parseInt(sc.nextLine().trim());
+        double salary = Double.parseDouble(sc.nextLine().trim());
+        Person p = new Person();
+        p.setDetails(name, age, salary);
+        p.displayDetails();
+        sc.close();
+    }
+}
