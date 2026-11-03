@@ -1,0 +1,94 @@
+/*Q11. You are designing a computer hardware model using inner classes and static nested classes.
+Class: CPU
+Create a class named CPU with the following instance variable:
+• price (double) — represents the price of the CPU.
+Implement a parameterized constructor CPU(double price) to initialize the CPU price.
+Inside the CPU class, implement the following nested classes.
+Inner Class: Processor
+Create a non-static inner class named Processor with:
+• cores (int) — represents the number of processor cores.
+• manufacturer (String) — represents the processor manufacturer.
+Implement a parameterized constructor Processor(int cores, String manufacturer) to initialize these variables.
+Static Nested Class: RAM
+Create a static nested class named RAM with:
+• memory (int) — represents the RAM memory capacity.
+• manufacturer (String) — represents the RAM manufacturer.
+Implement a parameterized constructor RAM(int memory, String manufacturer) to initialize these variables.
+Class: CPUDemo
+Implement the CPUDemo class to perform the following operations:
+Ls Read the CPU price, processor core count, processor manufacturer, RAM memory capacity, and RAM manufacturer.
+2 Create a CPU object using the entered price.
+3. Create a Processor object using the CPU instance.
+4. Create a RAM object using the static nested class.
+D5 Display the CPU, processor, and RAM details in the required format.
+This program must demonstrate that a non-static inner class is instantiated through an enclosing class object, while a static nested class can
+be instantiated without creating an instance of its enclosing class.
+Input Format:
+The input consists of five values:
+1. CPU price — double
+2: Processor number of cores — int
+3. Processor manufacturer — String
+4. RAM memory — int
+5. RAM manufacturer — String
+Each value is provided on a separate line.
+Output Format:
+Display the details in the following format:
+CPU Price: <price>
+Processor Cores: <cores>
+Processor Manufacturer: <processor_manufacturer>
+RAM Memory: <memory>
+RAM Manufacturer: <ram_manufacturer>
+*/
+import java.util.Scanner;
+ 
+class CPU {
+    double price;
+ 
+    CPU(double price) {
+        this.price = price;
+    }
+ 
+    // Non-static inner class: needs a CPU object
+    class Processor {
+        int cores;
+        String manufacturer;
+ 
+        Processor(int cores, String manufacturer) {
+            this.cores = cores;
+            this.manufacturer = manufacturer;
+        }
+    }
+ 
+    // Static nested class: no CPU object needed
+    static class RAM {
+        int memory;
+        String manufacturer;
+ 
+        RAM(int memory, String manufacturer) {
+            this.memory = memory;
+            this.manufacturer = manufacturer;
+        }
+    }
+}
+ 
+public class CPUDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double price = Double.parseDouble(sc.nextLine().trim());
+        int cores = Integer.parseInt(sc.nextLine().trim());
+        String pMan = sc.nextLine().trim();
+        int memory = Integer.parseInt(sc.nextLine().trim());
+        String rMan = sc.nextLine().trim();
+ 
+        CPU cpu = new CPU(price);
+        CPU.Processor processor = cpu.new Processor(cores, pMan);
+        CPU.RAM ram = new CPU.RAM(memory, rMan);
+ 
+        System.out.println("CPU Price: " + cpu.price);
+        System.out.println("Processor Cores: " + processor.cores);
+        System.out.println("Processor Manufacturer: " + processor.manufacturer);
+        System.out.println("RAM Memory: " + ram.memory);
+        System.out.println("RAM Manufacturer: " + ram.manufacturer);
+        sc.close();
+    }
+}
