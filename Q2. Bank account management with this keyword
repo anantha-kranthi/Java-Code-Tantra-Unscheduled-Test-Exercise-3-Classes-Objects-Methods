@@ -1,0 +1,81 @@
+/*Q2. Write a Java program to implement a simple Bank Account Management System using a class, constructor, instance methods, and the
+this keyword.
+Complete the provided BankAccount class with the following instance variables:
+• name (String): stores the account holder's name.
+• balance (double): stores the current account balance.
+Constructor
+Implement a parameterized constructor BankAccount(String name, double balance) that initializes both instance variables using the
+this keyword.
+Methods
+Implement the following methods in the BankAccount class:
+• deposit(double amount): Adds the specified amount to the current balance and displays the updated balance.
+• withdraw(double amount): Deducts the specified amount if sufficient balance is available. Otherwise, displays Insufficient balance
+without changing the balance.
+• displayBalance(): Displays the current account balance.
+The BankAccount class must also implement main() to read the account details, create a BankAccount object, and process the specified
+sequence of operations.
+Input Format:
+The first line contains a string representing the account holder's name.
+• The second line contains a floating-point number representing the initial balance.
+• The third line contains an integer g, representing the number of operations.
+• Each of the next q lines contains one of the following operations:
+L deposit <amount> — where <amount> is a floating-point number representing the amount to deposit.
+2. withdraw <amount> — where <amount> is a floating-point number representing the amount to withdraw.
+3. display — displays the current account balance.
+Output Format:
+For each operation, print the corresponding output immediately after it is processed:
+• For a deposit operation:
+Balance after deposit: <balance>
+• For a withdraw operation:
+Balance after withdrawal: <balance>
+or
+Insufficient balance
+• For a display operation:
+Current balance: <balance>
+Note: Print all balance values (after deposit, after withdrawal, and current balance) rounded to two decimal places.*/
+import java.util.Scanner;
+ 
+public class BankAccount {
+    String name;
+    double balance;
+ 
+    BankAccount(String name, double balance) {
+        this.name = name;
+        this.balance = balance;
+    }
+ 
+    void deposit(double amount) {
+        this.balance += amount;
+        System.out.printf("Balance after deposit: %.2f%n", this.balance);
+    }
+ 
+    void withdraw(double amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            System.out.printf("Balance after withdrawal: %.2f%n", this.balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+ 
+    void displayBalance() {
+        System.out.printf("Current balance: %.2f%n", this.balance);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        double balance = Double.parseDouble(sc.nextLine().trim());
+        int q = Integer.parseInt(sc.nextLine().trim());
+        BankAccount acc = new BankAccount(name, balance);
+        for (int i = 0; i < q; i++) {
+            String[] op = sc.nextLine().trim().split("\\s+");
+            switch (op[0].toLowerCase()) {
+                case "deposit":  acc.deposit(Double.parseDouble(op[1])); break;
+                case "withdraw": acc.withdraw(Double.parseDouble(op[1])); break;
+                case "display":  acc.displayBalance(); break;
+            }
+        }
+        sc.close();
+    }
+}
