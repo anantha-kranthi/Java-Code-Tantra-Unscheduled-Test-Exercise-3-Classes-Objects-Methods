@@ -1,0 +1,88 @@
+/*Q29. You are developing a Java program that performs arithmetic and bitwise operations using separate classes and methods.
+Create the following classes.
+ArithmeticOperations
+Create a class named ArithmeticOperations that contains the following methods:
+1. public int add(int a, int b)
+2. Accepts two integers and returns their sum.
+3. public int subtract(int a, int b)
+4. Accepts two integers and returns their difference.
+5. public int multiply(int a, int b)
+6. Accepts two integers and returns their product.
+7. public int divide(int a, int b)
+8. Accepts two integers and returns the quotient when the first integer is divided by the second.
+9. public int modulus(int a, int b)
+10. Accepts two integers and returns the remainder when the first integer is divided by the second.
+BitwiseOperations
+Create a class named BitwiseOperations that contains the following methods:
+1. public int andOp(int a, int b)
+2. Accepts two integers and returns the result of a bitwise AND operation.
+3. public int orOp(int a, int b)
+4. Accepts two integers and returns the result of a bitwise OR operation.
+5. public int xorOp(int a, int b)
+6. Accepts two integers and returns the result of a bitwise XOR operation.
+7. public int leftShift(int a, int n)
+8. Accepts two integers and returns the result of left shifting the first integer by n positions.
+9. public int rightShift(int a, int n)
+10. Accepts two integers and returns the result of right-shifting the first integer by n positions.
+The Operations class should:
+1. Create objects of ArithmeticOperations and BitwiseOperations.
+2. Read two integers, num1 and num2.
+3. Call the arithmetic methods and print their results in the specified order.
+4. Call the bitwise methods and print their results in the specified order.
+5. Use a shift count of 2 for both shift operations on num1.
+Input Format:
+• Two integers num1 and num2, separated by a space.
+Output Format:
+Output 10 lines, each corresponding to the result of the following operations:
+1. Addition
+2: Subtraction
+3. Multiplication
+4. Division
+5. Modulus
+6. Bitwise AND
+7.  Bitwise OR
+8. Bitwise XOR
+9. Left Shift (num1 left-shifted by 2 positions)
+10. Right Shift (num! right-shifted by 2 positions)
+Note: Each result should be printed on a new line.
+Constraints:
+*num2 + 0
+*/
+import java.util.Scanner;
+ 
+class ArithmeticOperations {
+    public int add(int a, int b) { return a + b; }
+    public int subtract(int a, int b) { return a - b; }
+    public int multiply(int a, int b) { return a * b; }
+    public int divide(int a, int b) { return a / b; }
+    public int modulus(int a, int b) { return a % b; }
+}
+ 
+class BitwiseOperations {
+    public int andOp(int a, int b) { return a & b; }
+    public int orOp(int a, int b) { return a | b; }
+    public int xorOp(int a, int b) { return a ^ b; }
+    public int leftShift(int a, int n) { return a << n; }
+    public int rightShift(int a, int n) { return a >> n; }
+}
+ 
+public class Operations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArithmeticOperations ar = new ArithmeticOperations();
+        BitwiseOperations bw = new BitwiseOperations();
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        System.out.println(ar.add(num1, num2));
+        System.out.println(ar.subtract(num1, num2));
+        System.out.println(ar.multiply(num1, num2));
+        System.out.println(ar.divide(num1, num2));
+        System.out.println(ar.modulus(num1, num2));
+        System.out.println(bw.andOp(num1, num2));
+        System.out.println(bw.orOp(num1, num2));
+        System.out.println(bw.xorOp(num1, num2));
+        System.out.println(bw.leftShift(num1, 2));
+        System.out.println(bw.rightShift(num1, 2));
+        sc.close();
+    }
+}
