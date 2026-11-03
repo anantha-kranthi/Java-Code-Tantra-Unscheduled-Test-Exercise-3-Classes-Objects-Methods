@@ -1,0 +1,51 @@
+/*Q5. You are working with Java instance variables and need to understand the default values assigned by Java when variables are declared
+without explicit initialization.
+Create a class named DefaultValues and declare instance variables for the following data types without assigning values:
+• byte
+• short
+• int
+• long
+• float
+• double
+• char
+• boolean
+• String
+The DefaultValues class should create an object of its own class and display the default value of each instance variable using that object.
+Input Format:
+• There is no input required for this program.
+Output Format:
+• Display the default values in the following format:
+byte: <value>
+short: <value>
+int: <value>
+long: <value>
+float: <value>
+double: <value>
+char: [<value>]
+boolean: <value>
+String: <value>
+*/
+public class DefaultValues {
+    byte b;
+    short s;
+    int i;
+    long l;
+    float f;
+    double d;
+    char c;
+    boolean bool;
+    String str;
+ 
+    public static void main(String[] args) {
+        DefaultValues obj = new DefaultValues();
+        System.out.println("byte: " + obj.b);
+        System.out.println("short: " + obj.s);
+        System.out.println("int: " + obj.i);
+        System.out.println("long: " + obj.l);
+        System.out.println("float: " + obj.f);
+        System.out.println("double: " + obj.d);
+        System.out.println("char: [" + obj.c + "]");
+        System.out.println("boolean: " + obj.bool);
+        System.out.println("String: " + obj.str);
+    }
+}
