@@ -1,0 +1,59 @@
+/*Q30. You are developing a Movie Rating System using Java classes, constructors, methods, and the this keyword.
+Create a class named Movie with the following instance variables:
+• String title — represents the movie title.
+• double rating — represents the movie rating.
+Constructor
+Create a constructor Movie(String title, double rating) that initializes the instance variables using the this keyword.
+Methods
+Implement the following methods:
+• display() — displays the movie title and rating.
+• isBlockbuster() — checks whether the movie is a blockbuster based on its rating.
+A movie is considered a Blockbuster if its rating is strictly greater than 8.0. Otherwise, it is considered Not a Blockbuster.
+The Movie class must implement main() to perform the following operations:
+1. Read the movie title and rating.
+2. Create a Movie object using the constructor.
+3. Call the display() method to display the movie details.
+4. Call the isBlockbuster() method to display the movie's blockbuster status.
+Input Format:
+• The first line contains a string representing the movie title.
+• The second line contains a floating-point number representing the movie rating.
+Output Format:
+• For display(), print the movie details in the format:
+Title: <title>
+Rating: <rating>
+<status>
+where <rating> is rounded to one decimal place.
+Where <status> is:
+• "Blockbuster" — if the rating is greater than 8.0.
+• "Not a Blockbuster" — if the rating is less than or equal to 8.0.
+*/
+import java.util.Scanner;
+ 
+public class Movie {
+    String title;
+    double rating;
+ 
+    Movie(String title, double rating) {
+        this.title = title;
+        this.rating = rating;
+    }
+ 
+    void display() {
+        System.out.println("Title: " + title);
+        System.out.printf("Rating: %.1f%n", rating);
+    }
+ 
+    boolean isBlockbuster() {
+        return rating > 8.0;
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String title = sc.nextLine().trim();
+        double rating = Double.parseDouble(sc.nextLine().trim());
+        Movie m = new Movie(title, rating);
+        m.display();
+        System.out.println(m.isBlockbuster() ? "Blockbuster" : "Not a Blockbuster");
+        sc.close();
+    }
+}
