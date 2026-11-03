@@ -1,0 +1,56 @@
+/*Q24. A company evaluates an employee's monthly performance based on the number of tasks completed. The evaluation process must calculate a
+performance score and temporarily revise the task count without modifying the original number of completed tasks.
+Write a Java program using the EmployeePerformance class to demonstrate method calls, return values, and pass-by-value for primitive
+data types.
+Implement the following static methods inside the EmployeePerformance class:
+int calculateScore(int tasksCompleted)
+• Receives the number of completed tasks.
+• Calculates the performance score by multiplying the tasks completed by 10.
+• Returns the calculated score.
+void reviseTasks(int tasksCompleted)
+• Receives the number of completed tasks.
+• Increases the received value by 5.
+• Prints the revised number of tasks.
+void displayResult(int score, int originalTasks)
+• Prints the performance score.
+• Prints the original number of completed tasks.
+Class: EmployeePerformance
+The EmployeePerformance class should:
+1. Read the number of tasks completed as an integer.
+2s Call calculateScore() and store its returned value.
+3. Call reviseTasks() with the original task count.
+4. Call displayResult() with the calculated score and the original task count.
+Input Format
+• The input consists of a single integer representing the number of tasks completed by the employee.
+Output Format
+• Print the output in the following format:
+Revised Tasks: <value>
+Performance Score: <value>
+Original Tasks: <value>*/
+import java.util.Scanner;
+ 
+public class EmployeePerformance {
+ 
+    static int calculateScore(int tasksCompleted) {
+        return tasksCompleted * 10;
+    }
+ 
+    static void reviseTasks(int tasksCompleted) {
+        tasksCompleted += 5;
+        System.out.println("Revised Tasks: " + tasksCompleted);
+    }
+ 
+    static void displayResult(int score, int originalTasks) {
+        System.out.println("Performance Score: " + score);
+        System.out.println("Original Tasks: " + originalTasks);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int tasks = sc.nextInt();
+        int score = calculateScore(tasks);
+        reviseTasks(tasks);
+        displayResult(score, tasks);
+        sc.close();
+    }
+}
