@@ -1,0 +1,35 @@
+/*Q23. A company wants to calculate an employee's revised salary after adding a bonus. However, the original salary stored in the payroll system
+must remain unchanged.
+Write a Java program using the EmployeeBonus class to demonstrate pass-by-value for primitive data types.
+Implement the following static method:
+calculateBonus(int salary): Accepts the employee's salary as an int parameter, adds 5000 to the parameter, and prints the updated salary
+using the format Updated "Salary: <updated_salary>".
+Class: EmployeeBonus
+The EmployeeBonus class should:
+1. Read the employee's original salary as an integer.
+2. Call calculateBonus(int salary) with the entered salary.
+35 Print the original salary after the method call using the format "Original Salary: <original_salary>".
+Input Format
+• The input consists of a single integer representing the employee's salary.
+Output Format
+• Print the output in the following format:
+Updated Salary: <updated_salary>
+Original Salary: <original_salary>
+*/
+import java.util.Scanner;
+ 
+public class EmployeeBonus {
+ 
+    static void calculateBonus(int salary) {
+        salary = salary + 5000;              // changes only the local copy
+        System.out.println("Updated Salary: " + salary);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int salary = sc.nextInt();
+        calculateBonus(salary);
+        System.out.println("Original Salary: " + salary);
+        sc.close();
+    }
+}
