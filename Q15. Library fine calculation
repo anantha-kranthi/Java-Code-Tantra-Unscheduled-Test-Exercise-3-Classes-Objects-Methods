@@ -1,0 +1,67 @@
+/*Q15. You are developing a Library Fine Calculation System using Java classes, constructors, and methods.
+Create a static nested class named Library inside the provided LibraryFinCalculator class. The Library class must contain the following
+instance variables:
+• String bookId — represents the book ID.
+• String title — represents the book title.
+• int borrowedDays — represents the number of days the book was borrowed.
+• double finePerDay — represents the fine charged per late day.
+Constructor
+Create a constructor Library(String bookld, String title, int borrowedDays, double finePerDay) to initialize all four instance variables.
+Method
+Implement calculateFine(int allowedDays) in the Library class.
+The method should:
+• Calculate the fine if borrowedDays is greater than allowedDays.
+• Use the formula:
+fine = (borrowedDays - allowedDays) x finePerDay
+• Display the calculated fine rounded to 2 decimal places.
+• Display "No Fine" if the book was returned within the allowed number of days.
+The LibraryFinCalculator class should read the book details and allowed days, create a Library object, and call calculateFine().
+Input Format:
+• The first line contains a string representing the book id.
+• The second line contains a string representing the book title.
+• The third line contains an integer representing the number of days the book was borrowed.
+• The fourth line contains a floating-point number representing the fine per day in rupees.
+• The fifth line contains an integer representing the number of allowed days.
+Output Format:
+• Print the output of calculateFine(allowedDays).
+
+*/
+import java.util.Scanner;
+ 
+public class LibraryFinCalculator {
+ 
+    static class Library {
+        String bookId;
+        String title;
+        int borrowedDays;
+        double finePerDay;
+ 
+        Library(String bookId, String title, int borrowedDays, double finePerDay) {
+            this.bookId = bookId;
+            this.title = title;
+            this.borrowedDays = borrowedDays;
+            this.finePerDay = finePerDay;
+        }
+ 
+        void calculateFine(int allowedDays) {
+            if (borrowedDays > allowedDays) {
+                double fine = (borrowedDays - allowedDays) * finePerDay;
+                System.out.printf("%.2f%n", fine);
+            } else {
+                System.out.println("No Fine");
+            }
+        }
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine().trim();
+        String title = sc.nextLine().trim();
+        int borrowed = Integer.parseInt(sc.nextLine().trim());
+        double fine = Double.parseDouble(sc.nextLine().trim());
+        int allowed = Integer.parseInt(sc.nextLine().trim());
+        Library lib = new Library(id, title, borrowed, fine);
+        lib.calculateFine(allowed);
+        sc.close();
+    }
+}
