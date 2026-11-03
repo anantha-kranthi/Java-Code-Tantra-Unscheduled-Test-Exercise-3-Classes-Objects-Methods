@@ -1,0 +1,99 @@
+/*Q3. Write a Java program to demonstrate arrays of objects, passing objects as method arguments, and returning objects from methods.
+Class: Student
+Create a class named Student with the following instance variables:
+• id (int): Stores the student's ID.
+• name (String): Stores the student's name.
+• marks (double): Stores the student's marks.
+Implement the following:
+1. A parameterized constructor Student(int id, String name, double marks) that initializes all three instance variables using the this
+keyword.
+2. A method displayDetails() that prints the student's ID, name, and marks, each on a separate line, using the following format:
+ID: <id>
+Name: <name>
+Marks: <marks>
+Class: StudentOperations
+Create a class named StudentOperations with the following methods:
+• displayStudents(Student[] students): Accepts an array of Student objects and calls displayDetails() for every student in the array.
+• findTopper(Student[] students): Accepts an array of Student objects, identifies the student with the highest marks, and returns that
+Student object. If multiple students have the same highest marks, return the first such student in the array.
+Class: StudentRecord
+The StudentRecord class should:
+1. Read the number of students.
+Dis Create an array of Student objects of the specified size.
+3. Read each student's ID, name, and marks, and create a Student object for each student.
+4. Create a StudentOperations object and pass the student array to displayStudents().
+5. Call findTopper() with the same array and store the returned Student object.
+6. Print "Topper Details: " and display the returned student's details using displayDetails().
+Input Format:
+1. The first line contains an integer N, representing the number of students.
+2. The next N lines contain the details of each student in the following format:
+• Student ID (int)
+• Student Name (String)
+• Student Marks (double)
+Output Format:
+• Display the details of all students in the following format:
+ID: <id>
+Name: <name>
+Marks: <marks>
+• After displaying all students, print:
+Topper Details:
+ID: <id>
+Name: <name>
+Marks: <marks>
+*/
+import java.util.Scanner;
+ 
+class Student {
+    int id;
+    String name;
+    double marks;
+ 
+    Student(int id, String name, double marks) {
+        this.id = id;
+        this.name = name;
+        this.marks = marks;
+    }
+ 
+    void displayDetails() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Marks: " + marks);
+    }
+}
+ 
+class StudentOperations {
+    void displayStudents(Student[] students) {
+        for (Student s : students) {
+            s.displayDetails();
+        }
+    }
+ 
+    Student findTopper(Student[] students) {
+        Student top = students[0];
+        for (Student s : students) {
+            if (s.marks > top.marks) top = s;   // first student wins on a tie
+        }
+        return top;
+    }
+}
+ 
+public class StudentRecord {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Student[] students = new Student[n];
+        for (int i = 0; i < n; i++) {
+            int id = sc.nextInt();
+            sc.nextLine();
+            String name = sc.nextLine().trim();
+            double marks = sc.nextDouble();
+            students[i] = new Student(id, name, marks);
+        }
+        StudentOperations ops = new StudentOperations();
+        ops.displayStudents(students);
+        Student topper = ops.findTopper(students);
+        System.out.println("Topper Details:");
+        topper.displayDetails();
+        sc.close();
+    }
+}
