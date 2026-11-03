@@ -1,0 +1,74 @@
+/*Q28. Write a Java program to store and display the details of n vehicles using an array of objects.
+Class: Vehicle
+Create a class named Vehicle with the following instance variables:
+• VehicleID (int): Stores the unique ID of the vehicle.
+• Model (String): Stores the model name of the vehicle.
+• Type (String): Stores the type of vehicle.
+• Price (double): Stores the price of the vehicle.
+Implement the following:
+Parameterized Constructor
+Create a constructor Vehicle(int VehicleID, String Model, String Type, double Price) that initializes all four instance variables using the
+values passed as arguments and the this keyword.
+Method
+Implement display(), which prints the vehicle's ID, model, type, and price on a single line, separated by single spaces, in the following
+format:
+VehicleID Model Type Price
+Use the default Java string representation of the double price.
+Class: VehicleDetails
+The VehicleDetails class should:
+1. Read an integer n, representing the number of vehicles.
+2. Create an array of Vehicle objects of size n.
+3. Read each vehicle's ID (int), model (String), type (String), and price (double), in that order.
+4. Create a Vehicle object for each record using the parameterized constructor and store it in the array.
+5. Invoke display() for every vehicle in the array, preserving the input order.
+Input Format
+The first line contains an integer n, representing the number of vehicles.
+The next n lines contain four values separated by spaces:
+• An integer VehicleID
+• Astring Model
+• Astring Type
+• Adouble Price
+Output Format
+• Display the details of each vehicle on a separate line in the following format:
+VehicleID Model Type Price
+• The values must be displayed in the same order as they were given in the input.
+Constraints
+• 1 ≤ n ≤ 100
+• 1 ≤ VehicleID ≤ 10^6
+• Model and Type contain no spaces.
+• 0 < Price ≤ 10^9
+*/
+import java.util.Scanner;
+ 
+class Vehicle {
+    int VehicleID;
+    String Model;
+    String Type;
+    double Price;
+ 
+    Vehicle(int VehicleID, String Model, String Type, double Price) {
+        this.VehicleID = VehicleID;
+        this.Model = Model;
+        this.Type = Type;
+        this.Price = Price;
+    }
+ 
+    void display() {
+        System.out.println(VehicleID + " " + Model + " " + Type + " " + Price);
+    }
+}
+ 
+public class VehicleDetails {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Vehicle[] vehicles = new Vehicle[n];
+        for (int i = 0; i < n; i++) {
+            vehicles[i] = new Vehicle(sc.nextInt(), sc.next(), sc.next(), sc.nextDouble());
+        }
+        for (Vehicle v : vehicles) {
+            v.display();
+        }
+        sc.close();
+    }
+}
