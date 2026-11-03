@@ -1,0 +1,82 @@
+/*Q18. Write a Java program to create a bank account database using a class named BankAccount.
+Class: BankAccount
+The BankAccount class must contain the following instance variables:
+• name (String): Stores the account holder's name.
+• accountNumber (long): Stores the bank account number.
+• accountType (String): Stores the account type, such as Savings or Current.
+• balance (double): Stores the current account balance.
+Constructor
+Implement a parameterized constructor:
+BankAccount(String name, long accountNumber, String accountType, double balance)
+The constructor must initialize all four instance variables using the values passed as arguments and the this keyword.
+Method
+Implement the following method:
+• displayDetails(): Prints the account holder's name, account number, account type, and balance, with each detail on a separate line.
+Use the following output labels:
+Account Holder: <name>
+Account Number: <accountNumber>
+Account Type: <accountType>
+Balance: <balance>
+Class: BankAccountDatabase
+The BankAccountDatabase class should perform the following operations:
+1. Read an integer n, representing the number of bank account holders.
+Di Create an array of BankAccount objects of size n.
+3. For each account holder, read the name, account number, account type, and balance in the specified order.
+4. Create a BankAccount object using the parameterized constructor and store it in the array.
+5: Invoke displayDetails() for each account in the array, preserving the input order.
+Input Format:
+1. The first line contains an integer n, representing the number of bank account holders.
+2. For each of the next n account holders, the input consists of the following, each on a separate line:
+• A string representing the account holder's name.
+• A long integer representing the account number.
+• A string representing the account type.
+• A double value representing the initial account balance.
+Output Format:
+• For each bank account, display the details in the following format:
+Account Holder: <name>
+Account Number: <accountNumber>
+Account Type: <accountType>
+Balance: <balance>
+• Display the details of each account on separate lines in the order they were entered.
+*/
+import java.util.Scanner;
+ 
+class BankAccount {
+    String name;
+    long accountNumber;
+    String accountType;
+    double balance;
+ 
+    BankAccount(String name, long accountNumber, String accountType, double balance) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+ 
+    void displayDetails() {
+        System.out.println("Account Holder: " + name);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Type: " + accountType);
+        System.out.println("Balance: " + balance);
+    }
+}
+ 
+public class BankAccountDatabase {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        BankAccount[] accounts = new BankAccount[n];
+        for (int i = 0; i < n; i++) {
+            String name = sc.nextLine().trim();
+            long accNo = Long.parseLong(sc.nextLine().trim());
+            String type = sc.nextLine().trim();
+            double bal = Double.parseDouble(sc.nextLine().trim());
+            accounts[i] = new BankAccount(name, accNo, type, bal);
+        }
+        for (BankAccount a : accounts) {
+            a.displayDetails();
+        }
+        sc.close();
+    }
+}
