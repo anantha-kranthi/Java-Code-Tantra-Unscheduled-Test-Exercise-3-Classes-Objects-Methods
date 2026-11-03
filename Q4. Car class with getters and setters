@@ -1,0 +1,57 @@
+/*Q4. Design a Java class named Car to represent individual cars in a Car Rental System. The class must store the car model and manufacturing
+year and provide methods to access and modify these attributes.
+Class: Car
+The Car class should include the following attributes:
+• model (String): Represents the model of the car (for example, Camry or Accord).
+• year (int): Represents the manufacturing year of the car.
+Implement the following constructors:
+• Car(): Initializes a Car object using the default constructor.
+• Car(String model, int year): Initializes a Car object with the specified model and manufacturing year.
+Implement the following methods:
+• getModel(): returns the car model as a String.
+• getYear(): returns the manufacturing year as an int.
+• setModel(String model): Updates the model of the car.
+• setYear(int year): Updates the manufacturing year of the car.
+Within the Car class, perform the following operations:
+1. Read the car model and manufacturing year.
+2. Create an object named rentalCar using the default constructor.
+3. Use the setter methods to assign the entered values.
+4. Use the getter methods to retrieve and display the car details.
+Input Format:
+• The first line contains a string representing the car model.
+• The second line contains an integer representing the manufacturing year.
+Output Format:
+Display the car details in the following format:
+Model: <car_model>
+Year: <car_manufacturing year>
+*/
+import java.util.Scanner;
+ 
+public class Car {
+    private String model;
+    private int year;
+ 
+    Car() { }
+ 
+    Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+ 
+    String getModel() { return model; }
+    int getYear() { return year; }
+    void setModel(String model) { this.model = model; }
+    void setYear(int year) { this.year = year; }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String model = sc.nextLine();
+        int year = sc.nextInt();
+        Car rentalCar = new Car();
+        rentalCar.setModel(model);
+        rentalCar.setYear(year);
+        System.out.println("Model: " + rentalCar.getModel());
+        System.out.println("Year: " + rentalCar.getYear());
+        sc.close();
+    }
+}
