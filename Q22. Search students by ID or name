@@ -1,0 +1,91 @@
+/*Q22. You are developing a Student Search System using an array of objects.
+Class: Student
+Create a separate class named Student to represent an individual student. It must contain the following instance variables:
+• id (int) — stores the student's ID.
+• name (String) — stores the student's name.
+The class must include:
+• A parameterized constructor Student(int id, String name) to initialize the student's details.
+• A display() method to display the student's ID and name in the required format.
+Class: StudentSearch
+Implement the StudentSearch class to manage student records and search for students using an array of Student objects.
+The class must perform the following operations:
+1. Read the number of students, n.
+2. Create an array of Student objects of size n.
+3. Read each student's ID and name, create a Student object, and store it in the array.
+4. Read a search option:
+• 1 — Search by student ID.
+• 2 — Search by student name.
+5. Read the corresponding search key.
+6. Search the student records and display the matching details:
+• When searching by ID, display only the first matching student.
+• When searching by name, display all students whose names match exactly.
+7. If no matching student is found, display "Student not found".
+Input Format:
+The input consists of:
+• The first line contains an integer n, representing the number of students.
+• The next 7 lines contain the student details:
+• Student ID (int)
+• Student Name (String)
+• The next line contains an integer choice:
+• 1 for searching by ID
+• 2 for searching by Name
+• The final line contains the search key:
+• An integer student ID if the option is 1.
+• A student name if the option is 2.
+Output Format:
+• Ifa matching student is found, display:
+Student ID: <id>
+Student Name: <name>
+• If no matching student is found, display:
+Student not found*/
+import java.util.Scanner;
+ 
+class Student {
+    int id;
+    String name;
+ 
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+ 
+    void display() {
+        System.out.println("Student ID: " + id);
+        System.out.println("Student Name: " + name);
+    }
+}
+ 
+public class StudentSearch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Student[] students = new Student[n];
+        for (int i = 0; i < n; i++) {
+            int id = Integer.parseInt(sc.nextLine().trim());
+            String name = sc.nextLine().trim();
+            students[i] = new Student(id, name);
+        }
+        int option = Integer.parseInt(sc.nextLine().trim());
+        String key = sc.nextLine().trim();
+        boolean found = false;
+        if (option == 1) {
+            int id = Integer.parseInt(key);
+            for (Student s : students) {
+                if (s.id == id) {
+                    s.display();
+                    found = true;
+                    break;                     // only the first match
+                }
+            }
+        } else if (option == 2) {
+            for (Student s : students) {
+                if (s.name.equals(key)) {      // all exact matches
+                    s.display();
+                    found = true;
+                }
+            }
+        }
+        if (!found) System.out.println("Student not found");
+        sc.close();
+    }
+}
