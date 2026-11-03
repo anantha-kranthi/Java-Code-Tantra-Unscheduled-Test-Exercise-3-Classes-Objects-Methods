@@ -1,0 +1,55 @@
+/*Q1. Write a Java program to implement a basic calculator using a class mechanism. The program should include the following:
+Aclass named Calculator with the following methods:
+• add(int a, int b): Returns the sum of two integers.
+• subtract(int a, int b): Returns the difference of two integers.
+• multiply(int a, int b): Returns the product of two integers.
+• divide(int a, int b): Returns the result of dividing two integers as a double. If the divisor is zero, display a message: "error division"
+and return 0.0.
+Input Format:
+• The first line contains an integer representing the first number.
+• The second line contains an integer representing the second number.
+Output Format:
+• Print the results of the operations as follows:
+Addition: <result>
+Subtraction: <result>
+Multiplication: <result>
+Division: <result>
+or
+error division //If division by zero occurs
+Note:
+• The result of the division should be formatted to 2 decimals.
+• Returning 0.0 is required for handling inside the program, but should not be printed as output
+*/
+import java.util.Scanner;
+ 
+class Calculator {
+    int add(int a, int b) { return a + b; }
+    int subtract(int a, int b) { return a - b; }
+    int multiply(int a, int b) { return a * b; }
+ 
+    double divide(int a, int b) {
+        if (b == 0) {
+            System.out.println("error division");
+            return 0.0;                      // returned, but not printed
+        }
+        return (double) a / b;
+    }
+}
+ 
+public class CalculatorDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        Calculator calc = new Calculator();
+        System.out.println("Addition: " + calc.add(a, b));
+        System.out.println("Subtraction: " + calc.subtract(a, b));
+        System.out.println("Multiplication: " + calc.multiply(a, b));
+        if (b != 0) {
+            System.out.printf("Division: %.2f%n", calc.divide(a, b));
+        } else {
+            calc.divide(a, b);               // prints "error division"
+        }
+        sc.close();
+    }
+}
