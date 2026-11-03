@@ -1,0 +1,53 @@
+/*Q20. Write a Java program to print a diamond pattern of alphabets for a given number of rows using methods.
+Class: alphabetDiamond
+Implement the following static methods inside the alphabetDiamond class.
+1. printRow(int row, int n)
+• Accepts row (int), representing the current row number, and n (int), representing the number of rows in the upper half of the
+diamond.
+• Prints n - row leading spaces.
+• Prints alphabets in increasing order from A up to the alphabet corresponding to the current row.
+• Prints the remaining alphabets in decreasing order, excluding the repeated middle character.
+• Moves to the next line after printing the row.
+2. printDiamond(int n)
+1. Accepts n (int), representing the number of rows in the upper half of the diamond.
+2. Calls printRow() for rows 1 through n to print the upper half, including the middle row.
+3. Calls printRow() for rows n − 1 down to 1 to print the lower half without repeating the middle row.
+The alphabetDiamond class should read the integer n and call printDiamond(n) to display the complete pattern.
+Input Format:
+• Asingle line containing an integer n, representing the number of rows in the upper half of the diamond.
+Output Format:
+• Print the diamond pattern of alphabets as described above.
+Sample Input:
+4
+Sample Output:
+A
+ABA
+ABCBA
+ABCDCBA
+ABCBA
+ABA
+A*/
+import java.util.Scanner;
+ 
+public class alphabetDiamond {
+ 
+    static void printRow(int row, int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n - row; i++) sb.append(' ');
+        for (int i = 0; i < row; i++) sb.append((char) ('A' + i));        // A .. current
+        for (int i = row - 2; i >= 0; i--) sb.append((char) ('A' + i));   // back down to A
+        System.out.println(sb);
+    }
+ 
+    static void printDiamond(int n) {
+        for (int r = 1; r <= n; r++) printRow(r, n);
+        for (int r = n - 1; r >= 1; r--) printRow(r, n);
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        printDiamond(n);
+        sc.close();
+    }
+}
