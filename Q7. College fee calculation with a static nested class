@@ -1,0 +1,77 @@
+/*Q7. You are developing a College Fee Management System using Java classes, constructors, and methods.
+Create a static nested class named College inside the provided CollegeFeeCalculator class. The College class must contain the following
+instance variables:
+• String collegeId — represents the college ID.
+• String studentName — represents the student's name.
+• String courseName — represents the course name.
+• double feePerSemester — represents the fee charged per semester.
+• int numberOfSemesters — represents the number of semesters.
+Constructor
+Implement a parameterized constructor College(String collegeld, String studentName, String courseName, double feePerSemester, int
+numberOfSemesters) to initialize all five instance variables using the this keyword.
+Methods
+Implement the following methods:
+• calculateTotalFee() — calculates the total fee using:
+Display the result rounded to 2 decimal places.
+• calculateScholarship(double percentage) — calculates the fee after applying the given scholarship percentage:
+feeAfterScholarship = totalFee - (totalFee x percentage / 100)
+Display the result rounded to 2 decimal places.
+The CollegeFeeCalculator class should read the student enrollment details and scholarship percentage, create a College object, and call
+calculateTotalFee() followed by calculateScholarship(percentage).
+Input Format:
+• The first line contains a string representing the college id.
+• The second line contains a string representing the student name.
+• The third line contains a string representing the course name.
+• The fourth line contains a floating-point number representing the fee per semester in rupees.
+• The fifth line contains an integer representing the number of semesters.
+• The sixth line contains a floating-point number representing the scholarship percentage.
+Output Format:
+• Print the output of calculateTotalFee() followed by calculateScholarship(percentage) on separate lines.
+*/
+import java.util.Scanner;
+ 
+public class CollegeFeeCalculator {
+ 
+    static class College {
+        String collegeId;
+        String studentName;
+        String courseName;
+        double feePerSemester;
+        int numberOfSemesters;
+ 
+        College(String collegeId, String studentName, String courseName,
+                double feePerSemester, int numberOfSemesters) {
+            this.collegeId = collegeId;
+            this.studentName = studentName;
+            this.courseName = courseName;
+            this.feePerSemester = feePerSemester;
+            this.numberOfSemesters = numberOfSemesters;
+        }
+ 
+        double calculateTotalFee() {
+            double totalFee = feePerSemester * numberOfSemesters;
+            System.out.printf("%.2f%n", totalFee);
+            return totalFee;
+        }
+ 
+        void calculateScholarship(double percentage) {
+            double totalFee = feePerSemester * numberOfSemesters;
+            double feeAfterScholarship = totalFee - (totalFee * percentage / 100);
+            System.out.printf("%.2f%n", feeAfterScholarship);
+        }
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine().trim();
+        String student = sc.nextLine().trim();
+        String course = sc.nextLine().trim();
+        double fee = Double.parseDouble(sc.nextLine().trim());
+        int sems = Integer.parseInt(sc.nextLine().trim());
+        double pct = Double.parseDouble(sc.nextLine().trim());
+        College c = new College(id, student, course, fee, sems);
+        c.calculateTotalFee();
+        c.calculateScholarship(pct);
+        sc.close();
+    }
+}
