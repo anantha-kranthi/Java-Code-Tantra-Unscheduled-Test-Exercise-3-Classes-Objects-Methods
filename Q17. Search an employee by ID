@@ -1,0 +1,77 @@
+/*Q17. Write a Java program to search for an employee by ID using a class, constructor, an array of objects, and a member method.
+Create a class named Employee with the following instance variables:
+• eNo: Employee ID (an integer)
+• eName: Employee Name (a string)
+• eSalary: Salary of the employee (an integer)
+Constructor
+Implement a parameterized constructor Employee(int eNo, String eName, int eSalary) to initialize all three instance variables using the this
+keyword.
+Method
+Implement display() in the Employee class to display the employee ID, name, and salary, each on a separate line.
+The MainClass should perform the following operations:
+1. Read the number of employees, N.
+Ds Create an array to store N Employee objects.
+35 Read the ID, name, and salary of each employee and create an Employee object for each record.
+4. Read the employee ID to search for.
+5 Search the array for the first employee whose ID matches the given ID.
+6. If a matching employee is found, call display() for that employee and stop searching.
+Ts If no matching employee is found, display "Employee not found".
+Input Format:
+1. The first line of input contains an integer N, representing the number of employees.
+2. The next 3 x N lines each contain:
+• Employee ID (integer)
+• Employee Name (string)
+• Employee Salary (integer)
+3. The last line contains an integer representing the eNo to be searched.
+Output Format:
+• If the employee is found, print:
+eNo
+eName
+eSalary
+• Ifno matching employee is found, print:
+Employee not found
+*/
+import java.util.Scanner;
+ 
+class Employee {
+    int eNo;
+    String eName;
+    int eSalary;
+ 
+    Employee(int eNo, String eName, int eSalary) {
+        this.eNo = eNo;
+        this.eName = eName;
+        this.eSalary = eSalary;
+    }
+ 
+    void display() {
+        System.out.println(eNo);
+        System.out.println(eName);
+        System.out.println(eSalary);
+    }
+}
+ 
+public class MainClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Employee[] emps = new Employee[n];
+        for (int i = 0; i < n; i++) {
+            int no = Integer.parseInt(sc.nextLine().trim());
+            String name = sc.nextLine().trim();
+            int sal = Integer.parseInt(sc.nextLine().trim());
+            emps[i] = new Employee(no, name, sal);
+        }
+        int key = Integer.parseInt(sc.nextLine().trim());
+        boolean found = false;
+        for (Employee e : emps) {
+            if (e.eNo == key) {
+                e.display();
+                found = true;
+                break;
+            }
+        }
+        if (!found) System.out.println("Employee not found");
+        sc.close();
+    }
+}
