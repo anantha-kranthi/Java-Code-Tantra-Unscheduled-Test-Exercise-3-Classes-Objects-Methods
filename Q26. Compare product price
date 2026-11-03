@@ -1,0 +1,62 @@
+/*Q26. Write a Java program to implement a Product Price Comparison System using a static nested class, constructor, and instance method.
+The provided ProductPriceComparison class must contain a static nested class named Product.
+Product class
+Declare the following private instance variables:
+• productId (String): stores the product ID.
+• name (String): stores the product name.
+• price (double): stores the product price.
+Constructor
+Implement a parameterized constructor Product(String productId, String name, double price) to initialize all three instance variables using
+the this keyword.
+Method
+Implement comparePrice(double otherPrice) in the Product class. Compare the product's price with otherPrice and display:
+• "Cheaper" if the product price is less than otherPrice .
+• "Expensive" if the product price is greater than otherPrice .
+• "Same Price" if both prices are equal.
+The ProductPriceComparison class must implement main() to perform the following operations:
+1. Read the product ID, product name, product price, and comparison price.
+2. Create a Productobject using the constructor.
+35 Call comparePrice() with the comparison price.
+Input Format:
+• The first line contains a string representing the product id.
+• The second line contains a string representing the product name.
+• The fourth line contains a floating-point number representing the other price to compare with.
+Output Format:
+• Print one of the following based on the price comparison:
+Cheaper
+Expensive
+Same Price
+*/
+import java.util.Scanner;
+ 
+public class ProductPriceComparison {
+ 
+    static class Product {
+        private String productId;
+        private String name;
+        private double price;
+ 
+        Product(String productId, String name, double price) {
+            this.productId = productId;
+            this.name = name;
+            this.price = price;
+        }
+ 
+        void comparePrice(double otherPrice) {
+            if (price < otherPrice) System.out.println("Cheaper");
+            else if (price > otherPrice) System.out.println("Expensive");
+            else System.out.println("Same Price");
+        }
+    }
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine().trim();
+        String name = sc.nextLine().trim();
+        double price = Double.parseDouble(sc.nextLine().trim());
+        double other = Double.parseDouble(sc.nextLine().trim());
+        Product p = new Product(id, name, price);
+        p.comparePrice(other);
+        sc.close();
+    }
+}
